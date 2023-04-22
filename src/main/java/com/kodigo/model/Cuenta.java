@@ -15,11 +15,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.kodigo.util.Constantes;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "cuenta")
+@Table(name = Constantes.TABLA_CUENTA)
 public class Cuenta {
 
     @Id
@@ -27,28 +28,28 @@ public class Cuenta {
     private Integer idCuenta;
 
     @NotNull
-    @Size(min = 10, max = 10, message = "Número de cuenta debe tener 10 dígitos.")
-    @Column(name = "numero_cuenta", nullable = false, length = 10)
+    @Size(min = 10, max = 10, message = Constantes.CUENTA_DEBE_TENER_10_DIGITOS)
+    @Column(name = Constantes.NUMERO_CUENTA, nullable = false, length = 10)
     private String numeroCuenta;
 
     @NotNull
-    @Size(min = 3, max = 3, message = "Tipos permitidos AHO, CTE")
-    @Column(name = "tipo_cuenta", nullable = false, length = 3)
+    @Size(min = 3, max = 3, message = Constantes.TIPO_CUENTA_PERMITIDOS)
+    @Column(name = Constantes.TIPO_CUENTA, nullable = false, length = 3)
     private String tipoCuenta;
 
     @NotNull
-    @Column(name = "saldo_inicial", nullable = false)
+    @Column(name = Constantes.SALDO_INICIAL, nullable = false)
     private BigDecimal saldoInicial;
 
-    @Column(name = "saldo_disponible", nullable = false)
+    @Column(name = Constantes.SALDO_DISPONIBLE, nullable = false)
     private BigDecimal saldoDisponible;
 
     @NotNull
-    @Column(name = "estado", nullable = false)
+    @Column(name = Constantes.ESTADO, nullable = false)
     private Boolean estado;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne
-    @JoinColumn(name = "id_cliente", nullable = false, foreignKey = @ForeignKey(name = "fk_cuenta_cliente"))
+    @JoinColumn(name = Constantes.ID_CLIENTE, nullable = false, foreignKey = @ForeignKey(name = Constantes.FK_CUENTA_CLIENTE))
     private Cliente cliente;
 }

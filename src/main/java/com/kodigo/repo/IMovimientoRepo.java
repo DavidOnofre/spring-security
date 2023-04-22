@@ -3,6 +3,7 @@ package com.kodigo.repo;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.kodigo.util.Constantes;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -11,8 +12,8 @@ import com.kodigo.model.Movimiento;
 public interface IMovimientoRepo extends IGenericRepo<Movimiento, Integer> {
 
 	@Query("FROM Movimiento c WHERE (c.cuenta.cliente.idCliente =:idCliente) AND (c.fecha BETWEEN :fechaDesde AND :fechaHasta)")
-	List<Movimiento> obtenerReporte(@Param("fechaDesde") LocalDateTime fechaDesde,
-									 @Param("fechaHasta") LocalDateTime fechaHasta,
-									 @Param("idCliente") Integer idCliente);
+	List<Movimiento> obtenerReporte(@Param(Constantes.PARAM_FECHA_DESDE) LocalDateTime fechaDesde,
+									 @Param(Constantes.PARAM_FECHA_HASTA) LocalDateTime fechaHasta,
+									 @Param(Constantes.PARAM_ID_CLIENTE) Integer idCliente);
 
 }

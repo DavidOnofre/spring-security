@@ -2,6 +2,7 @@ package com.kodigo.controller;
 
 import com.kodigo.model.Cuenta;
 import com.kodigo.service.ICuentaService;
+import com.kodigo.util.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cuentas")
+@RequestMapping(Constantes.CUENTAS)
 public class CuentaController {
 
     @Autowired

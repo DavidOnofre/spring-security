@@ -1,5 +1,6 @@
 package com.kodigo.model;
 
+import com.kodigo.util.Constantes;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -19,28 +20,28 @@ import javax.validation.constraints.Size;
 
 @Data
 @Entity
-@Table(name = "movimiento")
+@Table(name = Constantes.TABLA_MOVIMIENTO)
 public class Movimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMovimiento;
 
-    @Column(name = "fecha", nullable = false)
+    @Column(name = Constantes.FECHA, nullable = false)
     private LocalDateTime fecha;
 
     @NotNull
-    @Size(min = 3, max = 3, message = "tipoMovimiento debe tener 3 caracteres")
-    @Column(name = "tipo_movimiento", nullable = false, length = 3)
+    @Size(min = 3, max = 3, message = Constantes.TIPO_MOVIMIENTO_DEBE_TENER_3_CARACTERES)
+    @Column(name = Constantes.TIPO_MOVIMIENTO, nullable = false, length = 3)
     private String tipoMovimiento;
 
     @NotNull
-    @Column(name = "valor", nullable = false)
+    @Column(name = Constantes.VALOR, nullable = false)
     private BigDecimal valor;
 
-    @Column(name = "saldo", nullable = false)
+    @Column(name = Constantes.SALDO, nullable = false)
     private BigDecimal saldo;
 
     @ManyToOne
-    @JoinColumn(name = "id_cuenta", nullable = false, foreignKey = @ForeignKey(name = "fk_movimiento_cuenta"))
+    @JoinColumn(name = Constantes.ID_CUENTA, nullable = false, foreignKey = @ForeignKey(name = Constantes.FK_MOVIMIENTO_CUENTA))
     private Cuenta cuenta;
 }

@@ -3,6 +3,7 @@ package com.kodigo.exception;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
+import com.kodigo.util.Constantes;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
         String mensaje = ex.getBindingResult().getAllErrors().stream().map(e -> {
-            return e.getDefaultMessage().toString().concat(", ");
+            return e.getDefaultMessage().toString().concat(Constantes.ESPACIO);
         }).collect(Collectors.joining());
 
         ExceptionResponse er = new ExceptionResponse(LocalDateTime.now(), mensaje, request.getDescription(false));

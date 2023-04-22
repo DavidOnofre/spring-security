@@ -4,6 +4,7 @@ import com.kodigo.model.Movimiento;
 import com.kodigo.model.dto.ReporteDTO;
 import com.kodigo.model.dto.CriteriosReporteDTO;
 import com.kodigo.service.IMovimientoService;
+import com.kodigo.util.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/movimientos")
+@RequestMapping(Constantes.MOVIMIENTOS)
 public class MovimientoController {
 
     @Autowired
@@ -25,7 +26,7 @@ public class MovimientoController {
         return new ResponseEntity<List<Movimiento>>(lista, HttpStatus.OK);
     }
 
-    @GetMapping("/reporte")
+    @GetMapping(Constantes.REPORTE)
     public ResponseEntity<ReporteDTO> reporteMovimientos(@RequestBody CriteriosReporteDTO criterios) throws Exception {
         ReporteDTO obj = service.generarReporte(criterios);
         return new ResponseEntity<ReporteDTO>(obj, HttpStatus.OK);

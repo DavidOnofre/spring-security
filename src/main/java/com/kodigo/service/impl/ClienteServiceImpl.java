@@ -7,6 +7,7 @@ import com.kodigo.repo.IClienteRepo;
 import com.kodigo.repo.IGenericRepo;
 import com.kodigo.repo.IPersonaRepo;
 import com.kodigo.service.IClienteService;
+import com.kodigo.util.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IC
     public Cliente registrarCliente(Cliente cliente) {
         Cliente c = repo.consultarClientePorPersona(cliente.getPersona().getIdPersona());
         if (c != null) {
-            throw new ModeloNotFoundException("idPersona ya usado");
+            throw new ModeloNotFoundException(Constantes.ID_PERSONA_USADO);
         }
 
         cliente.setPersona(cargarPersona(cliente));

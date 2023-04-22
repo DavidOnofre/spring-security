@@ -2,6 +2,7 @@ package com.kodigo.controller;
 
 import com.kodigo.model.Cliente;
 import com.kodigo.service.IClienteService;
+import com.kodigo.util.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping(Constantes.CLIENTES)
 public class ClienteController {
 
     @Autowired

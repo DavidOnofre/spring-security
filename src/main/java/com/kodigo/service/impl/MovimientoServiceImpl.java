@@ -1,30 +1,27 @@
 package com.kodigo.service.impl;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import javax.transaction.Transactional;
-
-import com.kodigo.model.dto.CuentaDTO;
-import com.kodigo.model.dto.MovimientoDTO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.kodigo.exception.ModeloNotFoundException;
 import com.kodigo.model.Cuenta;
 import com.kodigo.model.Movimiento;
 import com.kodigo.model.Persona;
-import com.kodigo.model.dto.ReporteDTO;
 import com.kodigo.model.dto.CriteriosReporteDTO;
+import com.kodigo.model.dto.MovimientoDTO;
+import com.kodigo.model.dto.ReporteDTO;
 import com.kodigo.repo.ICuentaRepo;
 import com.kodigo.repo.IGenericRepo;
 import com.kodigo.repo.IMovimientoRepo;
 import com.kodigo.repo.IPersonaRepo;
 import com.kodigo.service.IMovimientoService;
+import com.kodigo.util.Constantes;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovimientoServiceImpl extends CRUDImpl<Movimiento, Integer> implements IMovimientoService {
@@ -64,20 +61,20 @@ public class MovimientoServiceImpl extends CRUDImpl<Movimiento, Integer> impleme
     private void registrarMovimiento(Movimiento movimiento, Cuenta cuenta) {
         movimiento.setFecha(LocalDateTime.now());
         switch (movimiento.getTipoMovimiento()) {
-            case "RET":
+            case Constantes.RETIRO:
 
                 movimiento.setSaldo(cuenta.getSaldoDisponible());
                 movimientoRepo.save(movimiento);
 
                 break;
-            case "DEP":
+            case Constantes.DEPOSITO:
 
                 movimiento.setSaldo(cuenta.getSaldoDisponible());
                 movimientoRepo.save(movimiento);
 
                 break;
             default:
-                throw new ModeloNotFoundException("Tag tipoMovimiento permitidos: retiro: RET / deposito: DEP ");
+                throw new ModeloNotFoundException(Constantes.TIPO_MOVIMIENTO_PERMITIDOS_RETIRO_DEPOSITO);
         }
     }
 
@@ -85,18 +82,18 @@ public class MovimientoServiceImpl extends CRUDImpl<Movimiento, Integer> impleme
     // disponible en la cuenta.
     private void registrarSaldoCuenta(Movimiento movimiento, Cuenta cuenta) {
         switch (movimiento.getTipoMovimiento()) {
-            case "RET":
+            case Constantes.RETIRO:
 
                 BigDecimal saldoRetiro = cuenta.getSaldoDisponible().subtract(movimiento.getValor());
                 if (saldoRetiro.compareTo(BigDecimal.ZERO) < 0) {
-                    throw new ModeloNotFoundException("Saldo no disponible.");
+                    throw new ModeloNotFoundException(Constantes.SALDO_NO_DISPONIBLE);
                 }
 
                 cuenta.setSaldoDisponible(cuenta.getSaldoDisponible().subtract(movimiento.getValor()));
                 cuentaRepo.save(cuenta);
 
                 break;
-            case "DEP":
+            case Constantes.DEPOSITO:
 
                 cuenta.setSaldoDisponible(cuenta.getSaldoDisponible().add(movimiento.getValor()));
                 cuentaRepo.save(cuenta);
@@ -112,7 +109,7 @@ public class MovimientoServiceImpl extends CRUDImpl<Movimiento, Integer> impleme
         ReporteDTO reporteDTO = new ReporteDTO();
         List<Movimiento> movimientos = movimientoRepo.obtenerReporte(criterios.getFechaDesde(), criterios.getFechaHasta(), criterios.getIdCliente());
         if (movimientos.size() == 0) {
-            throw new ModeloNotFoundException("Sin Registro: " + criterios.getIdCliente());
+            throw new ModeloNotFoundException(Constantes.SIN_REGISTRO_REPORTE + criterios.getIdCliente());
         }
 
         List<MovimientoDTO> movimientoDTOList = new ArrayList<>();

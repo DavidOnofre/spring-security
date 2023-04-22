@@ -3,6 +3,7 @@ package com.kodigo.service.impl;
 import com.kodigo.exception.ModeloNotFoundException;
 import com.kodigo.repo.IGenericRepo;
 import com.kodigo.service.ICRUD;
+import com.kodigo.util.Constantes;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public abstract class CRUDImpl<T, ID> implements ICRUD<T, ID> {
         T t = getRepo().findById(id).orElse(null);
 
         if (t == null) {
-            throw new ModeloNotFoundException("ID no encontrado: " + id);
+            throw new ModeloNotFoundException(Constantes.ID_NO_ENCONTRADO + id);
         }
 
         return t;
@@ -41,7 +42,7 @@ public abstract class CRUDImpl<T, ID> implements ICRUD<T, ID> {
 
         T t = getRepo().findById(id).orElse(null);
         if (t == null) {
-            throw new ModeloNotFoundException("ID no encontrado: " + id);
+            throw new ModeloNotFoundException(Constantes.ID_NO_ENCONTRADO + id);
         }
 
         getRepo().deleteById(id);
