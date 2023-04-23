@@ -21,7 +21,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCliente;
 
-    @Column(name = Constantes.USUARIO, nullable = false, unique = true)
+    @Column(name = Constantes.USUARIO, nullable = false)
     private String usuario;
 
     @NotNull
