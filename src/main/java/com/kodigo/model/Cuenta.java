@@ -16,9 +16,13 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kodigo.util.Constantes;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = Constantes.TABLA_CUENTA)
 public class Cuenta {
@@ -29,7 +33,7 @@ public class Cuenta {
 
     @NotNull
     @Size(min = 10, max = 10, message = Constantes.CUENTA_DEBE_TENER_10_DIGITOS)
-    @Column(name = Constantes.NUMERO_CUENTA, nullable = false, length = 10)
+    @Column(name = Constantes.NUMERO_CUENTA, nullable = false, length = 10, unique = true)
     private String numeroCuenta;
 
     @NotNull

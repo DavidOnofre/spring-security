@@ -10,7 +10,6 @@ public interface IClienteRepo extends IGenericRepo<Cliente, Integer> {
     @Query("FROM Cliente c WHERE c.persona.idPersona=:idPersona")
     Cliente consultarClientePorPersona(@Param(Constantes.PARAM_ID_PERSONA) Integer idPersona);
 
-    //select * from usuario where username = ?
     Cliente findOneByUsuario(String usuario);
 
 }

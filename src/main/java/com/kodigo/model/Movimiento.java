@@ -1,7 +1,7 @@
 package com.kodigo.model;
 
 import com.kodigo.util.Constantes;
-import lombok.Data;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -18,7 +18,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = Constantes.TABLA_MOVIMIENTO)
 public class Movimiento {

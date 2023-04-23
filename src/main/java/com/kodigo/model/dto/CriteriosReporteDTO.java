@@ -1,10 +1,14 @@
 package com.kodigo.model.dto;
 
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CriteriosReporteDTO {
 
     private Integer idCliente;

@@ -1,12 +1,14 @@
 package com.kodigo.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ExceptionResponse {
 
 	private LocalDateTime fecha;

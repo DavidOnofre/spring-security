@@ -32,7 +32,7 @@ public class Constantes {
     public static final String SALDO = "saldo";
     public static final String ID_CUENTA = "id_cuenta";
     public static final String TABLA_PERSONA = "persona";
-    public static final String NOMBRE_DEBE_TENER_MINIMO_3_CARACTERES = "Tag Nombre debe tener mínimo 3 caracteres";
+    public static final String NOMBRE_DEBE_TENER_MINIMO_3_CARACTERES = "Tag nombre debe tener mínimo 3 caracteres";
     public static final String GENERO_ACEPTA_MASCULINO_FEMENINO = "Tag genero acepta los valores: M->masculino | F->femenino";
     public static final String NOMBRE = "nombre";
     public static final String GENERO = "genero";

@@ -1,11 +1,15 @@
 package com.kodigo.model.dto;
 
-import lombok.Data;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class MovimientoDTO {
 
     private String tipoMovimiento;

@@ -2,13 +2,17 @@ package com.kodigo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kodigo.util.Constantes;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = Constantes.TABLA_CLIENTE)
 public class Cliente {

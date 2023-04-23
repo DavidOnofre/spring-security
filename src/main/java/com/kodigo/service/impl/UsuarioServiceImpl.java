@@ -29,10 +29,10 @@ public class UsuarioServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(String.format(Constantes.USUARIO_NO_EXISTE, username));
         }
 
-        List<GrantedAuthority> roles = new ArrayList<>();
-        UserDetails ud = new User(usuario.getUsuario(), usuario.getClave(), roles);
+        List<GrantedAuthority> roles = new ArrayList<>(); //roles
+        UserDetails userDetails = new User(usuario.getUsuario(), usuario.getClave(), roles);
 
-        return ud;
+        return userDetails;
     }
 
 }

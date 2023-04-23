@@ -32,22 +32,19 @@ public class ClienteController {
         return new ResponseEntity<Cliente>(obj, HttpStatus.OK);
     }
 
-    /*@PostMapping
+    /*
+    @PostMapping
     public ResponseEntity<Cliente> registrar(@Valid @RequestBody Cliente cliente) throws Exception {
         Cliente obj = service.registrarCliente(cliente);
         return new ResponseEntity<Cliente>(obj, HttpStatus.CREATED);
-    }*/
+    }
+    */
 
     //hateos - nivel 2 Richardson
     @PostMapping
     public ResponseEntity<Void> registrar(@Valid @RequestBody Cliente cliente) throws Exception {
         Cliente obj = service.registrarCliente(cliente);
-
-        // generar un bloque de localicacion del recurso creado - Richardson Maturity Model, nivel 2
-        // https://martinfowler.com/articles/richardsonMaturityModel.html
-        // ej: Location : localhos:9090/clientes/idCliente
         URI localtion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdCliente()).toUri();
-
         return ResponseEntity.created(localtion).build();
     }
 
