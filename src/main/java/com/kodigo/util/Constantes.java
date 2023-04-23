@@ -46,6 +46,7 @@ public class Constantes {
     public static final String FK_CLIENTE_PERSONA = "fk_cliente_persona";
     public static final String FK_CUENTA_CLIENTE = "fk_cuenta_cliente";
     public static final String FK_MOVIMIENTO_CUENTA = "fk_movimiento_cuenta";
+    public static final String USUARIO = "usuario";
 
     //capa repo
     public static final String PARAM_ID_PERSONA = "idPersona";
@@ -61,4 +62,7 @@ public class Constantes {
     public static final String TIPO_MOVIMIENTO_PERMITIDOS_RETIRO_DEPOSITO = "Tag tipoMovimiento acepta los valores: RE->:retiro | DEP->deposito";
     public static final String SALDO_NO_DISPONIBLE = "Saldo no disponible.";
     public static final String SIN_REGISTRO_REPORTE = "Sin Registro para este reporte idCliente: ";
+
+    //seguridad
+    public static final String USUARIO_NO_EXISTE = "Usuario no existe";
 }

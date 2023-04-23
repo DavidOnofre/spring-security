@@ -17,6 +17,9 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCliente;
 
+    @Column(name = Constantes.USUARIO, nullable = false, unique = true)
+    private String usuario;
+
     @NotNull
     @Size(min = 8, message = Constantes.CLAVE_TENER_MINIMO_8_CARACTERES)
     @Column(name = Constantes.CLAVE, nullable = false, length = 70)

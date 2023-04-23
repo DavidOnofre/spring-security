@@ -9,6 +9,7 @@ import com.kodigo.repo.IPersonaRepo;
 import com.kodigo.service.IClienteService;
 import com.kodigo.util.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +20,9 @@ public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IC
 
     @Autowired
     private IPersonaRepo personaRepo;
+
+    @Autowired
+    private BCryptPasswordEncoder bcrypt;
 
     @Override
     protected IGenericRepo<Cliente, Integer> getRepo() {
@@ -32,8 +36,14 @@ public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IC
             throw new ModeloNotFoundException(Constantes.ID_PERSONA_USADO);
         }
 
+        cliente.setClave(cifrarClave(cliente));
         cliente.setPersona(cargarPersona(cliente));
         return repo.save(cliente);
+    }
+
+
+    private String cifrarClave(Cliente cliente) {
+        return bcrypt.encode(cliente.getClave());
     }
 
     private Persona cargarPersona(Cliente cliente) {

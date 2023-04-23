@@ -26,13 +26,6 @@ public class MovimientoController {
         return new ResponseEntity<List<Movimiento>>(lista, HttpStatus.OK);
     }
 
-    @GetMapping(Constantes.REPORTE)
-    public ResponseEntity<ReporteDTO> reporteMovimientos(@RequestBody CriteriosReporteDTO criterios) throws Exception {
-        ReporteDTO obj = service.generarReporte(criterios);
-        return new ResponseEntity<ReporteDTO>(obj, HttpStatus.OK);
-    }
-
-
     @GetMapping("/{id}")
     public ResponseEntity<Movimiento> listarPorId(@PathVariable("id") Integer id) throws Exception {
         Movimiento obj = service.listarPorId(id);
@@ -55,6 +48,12 @@ public class MovimientoController {
     public ResponseEntity<Void> eliminarPorId(@PathVariable("id") Integer id) throws Exception {
         service.eliminar(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(Constantes.REPORTE)
+    public ResponseEntity<ReporteDTO> reporteMovimientos(@RequestBody CriteriosReporteDTO criterios) throws Exception {
+        ReporteDTO obj = service.generarReporte(criterios);
+        return new ResponseEntity<ReporteDTO>(obj, HttpStatus.OK);
     }
 
 }
