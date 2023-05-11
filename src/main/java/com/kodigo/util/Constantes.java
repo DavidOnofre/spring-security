@@ -6,7 +6,8 @@ public class Constantes {
     public static final String CLIENTES = "/clientes";
     public static final String CUENTAS = "/cuentas";
     public static final String MOVIMIENTOS = "/movimientos";
-    public static final String REPORTE = "/reporte";
+    public static final String REPORTES = "/reportes";
+    public static final String REPORTE_POR_MOVIMIENTOS = "/reporteMovimientos";
     public static final String PERSONAS = "/personas";
     public static final String ESPACIO = ", ";
 
@@ -65,4 +66,7 @@ public class Constantes {
 
     //seguridad
     public static final String USUARIO_NO_EXISTE = "Usuario no existe";
+    public static final String CAMBIE_DE_USUARIO = "El usuario ya existe, por favor cambie de usuario";
+    public static final String CUENTA_USADA = "Número de cuenta ya usado";
+
 }

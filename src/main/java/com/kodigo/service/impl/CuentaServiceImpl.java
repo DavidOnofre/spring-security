@@ -1,5 +1,7 @@
 package com.kodigo.service.impl;
 
+import com.kodigo.exception.ModeloNotFoundException;
+import com.kodigo.util.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,8 @@ public class CuentaServiceImpl extends CRUDImpl<Cuenta, Integer> implements ICue
 	@Override
 	public Cuenta registrarCuenta(Cuenta cuenta) {
 
+		validarCuentaUsada(cuenta);
+
 		Cliente cliente = obtenerCliente(cuenta);
 		cuenta.setCliente(cliente);
 		cuenta.setSaldoDisponible(cuenta.getSaldoInicial());
@@ -36,6 +40,12 @@ public class CuentaServiceImpl extends CRUDImpl<Cuenta, Integer> implements ICue
 	//Método usado para obtener el cliente de una cuenta
 	private Cliente obtenerCliente(Cuenta cuenta) {
 		return clienteRepo.getById(cuenta.getCliente().getIdCliente());
+	}
+
+	private void validarCuentaUsada(Cuenta cuenta){
+		if (repo.findOneByNumeroCuenta(cuenta.getNumeroCuenta()) != null) {
+			throw new ModeloNotFoundException(Constantes.CUENTA_USADA);
+		}
 	}
 
 }

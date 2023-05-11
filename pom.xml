@@ -32,6 +32,13 @@
             <optional>true</optional>
         </dependency>
 
+        <!--base de datos mysql-->
+        <!--<dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>-->
+
         <!-- base de datos h2 -->
         <!--Ingresar: http://localhost:8082/login.jsp-->
         <dependency>
@@ -51,7 +58,7 @@
         </dependency>
 
         <!-- documentacion swagger -->
-        <!-- ingresar: http://localhost:9090/swagger-ui/index.html  - /v3/api-docs-->
+        <!-- ingresar: http://localhost:8080/swagger-ui/index.html  - /v3/api-docs-->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-core</artifactId>

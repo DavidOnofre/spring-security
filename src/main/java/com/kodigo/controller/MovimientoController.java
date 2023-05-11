@@ -1,8 +1,6 @@
 package com.kodigo.controller;
 
 import com.kodigo.model.Movimiento;
-import com.kodigo.model.dto.ReporteDTO;
-import com.kodigo.model.dto.CriteriosReporteDTO;
 import com.kodigo.service.IMovimientoService;
 import com.kodigo.util.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,12 +46,6 @@ public class MovimientoController {
     public ResponseEntity<Void> eliminarPorId(@PathVariable("id") Integer id) throws Exception {
         service.eliminar(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-    }
-
-    @GetMapping(Constantes.REPORTE)
-    public ResponseEntity<ReporteDTO> reporteMovimientos(@RequestBody CriteriosReporteDTO criterios) throws Exception {
-        ReporteDTO obj = service.generarReporte(criterios);
-        return new ResponseEntity<ReporteDTO>(obj, HttpStatus.OK);
     }
 
 }
